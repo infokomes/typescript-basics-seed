@@ -1,26 +1,9 @@
-const pizzas = [{ name: 'Pepperoni', toppings: ['pepperoni'] }];
+function sumAll(message: string, ...arr: number[]) {
+  console.log(message);
+  // console.log(arguments);
+  return arr.reduce((prev, next) => prev + next);
+}
 
-const mappedPizzas = pizzas.map(pizza => pizza.name.toUpperCase());
+const sum = sumAll('Hello', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-// const mappedPizzas = pizzas.map(pizza => {
-//   return pizza.name.toUpperCase();
-// });
-
-console.log(mappedPizzas);
-
-function createPizza() {}
-
-const pizza = {
-  name: 'Blazing Inferno',
-  getName: () => pizza.name,
-  getNameFunction: function() {
-    console.log(this.name);
-  },
-  getNameTimeout: function() {
-    setTimeout(() => {
-      console.log(this.name);
-    }, 100);
-  },
-};
-
-console.log(pizza.getName());
+console.log(sum);
