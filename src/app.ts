@@ -1,40 +1,124 @@
-// // Number Type
+// // The "Any" Type
 
-// const pizzaCost: number = 10;
-// const pizzaToppings: number = 5;
+// let coupon: any;
 
-// function calculatePrice(cost: number, toppings: number): number {
-//   return cost + 1.5 * toppings;
+// coupon = 25;
+// coupon = `pizza25`;
+// coupon = false;
+
+// // Implicit vs Explicit Types
+
+// let implicitCoupon = 'pizza25';
+// let explicitCoupon: string;
+
+// explicitCoupon = 'pizza25';
+
+// // Void Type
+
+// let selectedTopping: string = 'pepperoni';
+
+// function selectTopping(topping: string): void {
+//   selectedTopping = topping;
 // }
 
-// const cost: number = calculatePrice(pizzaCost, pizzaToppings);
+// selectTopping('bacon');
 
-// console.log(`Pizza costs: ${cost}`);
+// console.log(selectedTopping);
 
-// parseInt('15', 10);
+// // Never Type
 
-// // String Type
-
-// const coupon: string = 'pizza25';
-
-// function normalizeCoupon(code: string): string {
-//   return code.toUpperCase();
+// function orederError(error: string): never {
+//   throw new Error(error);
+//   // never going return value
 // }
 
-// const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+// orederError('Something went wrong');
 
-// console.log(couponMessage);
+// // Null, Undefined, Strict Null checks
 
-// // Boolean Type
+// let coupon: string | null = 'pizza25';
 
-const pizzas: number = 2;
+// function removeCoupon(): void {
+//   coupon = null;
+// }
 
-function offerDiscount(orders: number): boolean {
-  return orders >= 3;
-}
+// console.log(coupon);
 
-if (offerDiscount(pizzas)) {
-  console.log(`You're entitled to a discount!`);
-} else {
-  console.log(`Order more than 3 pizzas for a discount!`);
-}
+// removeCoupon();
+
+// console.log(coupon);
+
+// // Union and Literal Types
+
+// let pizzaSize: string = 'small';
+
+// function selectSize(size: 'small' | 'medium' | 'large'): void {
+//   pizzaSize = size;
+// }
+
+// selectSize('large');
+
+// console.log(`Pizza size: ${pizzaSize}`);
+
+// // Function Types
+
+// // let sumOrder: Function
+// let sumOrder: (price: number, quantity: number) => number = (x, y) => x * y;
+
+// const sum = sumOrder(25, 2);
+
+// console.log(`Total sum: ${sum}`);
+
+// // Functions and Optional Arguments
+
+// let sumOrder: (price: number, quantity?: number) => number;
+
+// sumOrder = (x, y) => {
+//   if (y) {
+//     return x * y;
+//   }
+//   return x;
+// };
+
+// const sum = sumOrder(25);
+// sumOrder(25, 2);
+
+// // Typed Functions and Default Params
+
+// let sumOrder: (price: number, quantity?: number) => number;
+
+// sumOrder = (x, y = 1) => x * y;
+
+// const sum = sumOrder(25, 5);
+
+// console.log(`Total sum: ${sum}`);
+
+// // Object Types
+
+// let pizza: { name: string; price: number; getName(): string } = {
+//   name: 'Plain Old Pepperoni',
+//   price: 20,
+//   getName() {
+//     return pizza.name;
+//   },
+// };
+
+// console.log(pizza.getName());
+
+// // Array Types and Generics
+
+// let sizes: number[];
+
+// sizes = [1, 2, 3];
+
+// let toppings: Array<string>;
+
+// toppings = ['pepperoni', 'tomato', 'bacon'];
+
+// // Tuple Types for Arrays
+
+// let pizza: (string | number | boolean)[];
+
+let pizza: [string, number, boolean]; // strict data type & order
+
+pizza = ['Pepperoni', 20, true];
