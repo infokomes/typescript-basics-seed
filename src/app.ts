@@ -1,27 +1,40 @@
-// Destructuring Objects
+// // Number Type
 
-// import { uppercase } from './utils';
+// const pizzaCost: number = 10;
+// const pizzaToppings: number = 5;
 
-const pizza = {
-  name: 'Pepperoni',
-  toppings: ['pepperoni'],
-};
+// function calculatePrice(cost: number, toppings: number): number {
+//   return cost + 1.5 * toppings;
+// }
 
-function order({ name: pizzaName, toppings: pizzaTopings }) {
-  // console.log(pizzaName, pizzaTopings)
-  return { pizzaName, pizzaTopings };
+// const cost: number = calculatePrice(pizzaCost, pizzaToppings);
+
+// console.log(`Pizza costs: ${cost}`);
+
+// parseInt('15', 10);
+
+// // String Type
+
+// const coupon: string = 'pizza25';
+
+// function normalizeCoupon(code: string): string {
+//   return code.toUpperCase();
+// }
+
+// const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+
+// console.log(couponMessage);
+
+// // Boolean Type
+
+const pizzas: number = 2;
+
+function offerDiscount(orders: number): boolean {
+  return orders >= 3;
 }
 
-const { pizzaName } = order(pizza);
-
-const toppings = ['pepperoni', 'bacon', 'chilli'];
-
-const [first, second, third] = toppings;
-
-// console.log(first, second, third);
-
-function logToppings([first, second, third]: any) {
-  console.log(first, second, third);
+if (offerDiscount(pizzas)) {
+  console.log(`You're entitled to a discount!`);
+} else {
+  console.log(`Order more than 3 pizzas for a discount!`);
 }
-
-logToppings(toppings);
