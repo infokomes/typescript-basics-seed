@@ -1,33 +1,44 @@
-// // Numeric Enums and Reverse Mappings
+// // Creating Interfaces // Interfaces with Function Types // Extending Interfaces
+// Interfaces and Optional Properties // Interfaces with Index Signatures
 
-// enum Sizes {
-//   Small,
-//   Medium,
-//   Large
-// }
+interface Sizes {
+  sizes: string[];
+};
 
-// enum Sizes {
-//   ExtraLarge = 3
-// }
+// type Pizza = {
+//   name: string;
+//   sizes: string[]
+// };
 
-// const selectedSize = 2;
+interface Pizza extends Sizes {
+  name: string;
+  toppings?: number;
+  // sizes: string[];
+  getAvailableSize(): void;
+  [key: number]: any;
+  // [key: string]: any;
+  dictionary?: {
+    [key: string]: any;
+  }
 
-// console.log(Sizes[selectedSize])
+};
 
-// // String Enums and Inlining Members
+// type getAvailableSize = () => string[];
 
-const enum Sizes {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large'
+let pizza: Pizza;
+
+function createPizza(name: string, sizes: string[]): Pizza {
+  return {
+    name,
+    sizes,
+    getAvailableSize() {
+      return this.sizes;
+    }
+  }
 }
 
-let selected: Sizes = Sizes.Small;
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+pizza[1] = 'xyz'
+pizza.toppings = 1;
 
-function updateSize(size: Sizes): void {
-  selected = size;
-}
-
-updateSize(Sizes.Large)
-console.log(selected)
-
+console.log(pizza)
