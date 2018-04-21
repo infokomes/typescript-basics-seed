@@ -1,26 +1,33 @@
-// // Type Aliases
+// // Numeric Enums and Reverse Mappings
 
-// type Size = 'small' | 'medium' | 'large';
-// type Callback = (size: Size) => void;
+// enum Sizes {
+//   Small,
+//   Medium,
+//   Large
+// }
 
-// let pizzaSize: Size = 'small';
+// enum Sizes {
+//   ExtraLarge = 3
+// }
 
-// const selectSize: Callback = x => {
-//   pizzaSize = x;
-// };
+// const selectedSize = 2;
 
-// selectSize('medium');
+// console.log(Sizes[selectedSize])
 
-// // Type Assertions
+// // String Enums and Inlining Members
 
-type Pizza = { name: string; toppings: number };
-
-const pizza: Pizza = { name: 'Blazing Inferno', toppings: 5 };
-
-const serialized = JSON.stringify(pizza);
-
-function getNameFromJSON(obj: string) {
-  return (JSON.parse(obj) as Pizza).name;
+const enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large'
 }
 
-getNameFromJSON(serialized);
+let selected: Sizes = Sizes.Small;
+
+function updateSize(size: Sizes): void {
+  selected = size;
+}
+
+updateSize(Sizes.Large)
+console.log(selected)
+
