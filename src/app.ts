@@ -1,71 +1,55 @@
-// // Understanding Classes and Constructors // Public and Private Members // Readonly Members
-// Setters and Getters (Accessors) // Class Inheritance // Abstract Classes // Protected Members and Inheritance
-// Interface contracts with "implements"
+// // Function Generics
 
-interface SizesInterface {
-  // sizes: string[];
-  availableSizes: string[];
+class Pizza {
+  constructor(private name: string, private price: number) { }
 }
 
-// abstract available only to extends
-abstract class Sizes implements SizesInterface {
-  constructor(protected sizes: string[]) { }
+class List<T>  {
+  private list: T[] = [];
 
-  set availableSizes(sizes: string[]) {
-    this.sizes = sizes;
+  addItem(item: T): void {
+    this.list.push(item);
   }
 
-  get availableSizes() {
-    return this.sizes;
+  getList(): T[] {
+    return this.list;
   }
-
 }
 
-interface PizzaInterface extends SizesInterface {
-  readonly name: string;
-  toppings: string[];
-  updateSizes(sizes: string[]): void;
-  addTopping(topping: string): void;
-}
+const list = new List<Pizza>();
 
-class Pizza extends Sizes implements PizzaInterface {
+list.addItem(new Pizza('Pepperoni', 15));
 
-  // public name: string;
-  public toppings: string[] = [];
+const pizzas: Pizza[] = list.getList();
 
-  constructor(readonly name: string, sizes: string[]) {
-    super(sizes);
-  }
-
-  public updateSizes(sizes: string[]) {
-    this.sizes = sizes;
-  }
-
-  public addTopping(topping: string) {
-    this.toppings.push(topping)
-  }
-
-}
-
-const pizza = new Pizza('Pepperoni', ['small', 'medium']);
-
-pizza.addTopping('pepperoni');
-
-console.log(pizza.availableSizes);
-pizza.updateSizes(['large']);
-
-console.log(pizza.availableSizes);
-// console.log(pizza);
-
-// //  Static Properties and Methods
+console.log(list.getList())
 
 class Coupon {
-
-  // static Property
-  static allowed = ['Pepperoni', 'Blazing Inferno']
-  static create(percentage: number) {
-    return `PIZZA_RESTAURANTE_${percentage}`
-  }
+  constructor(private name: string) { }
 }
 
-console.log(Coupon.create(25))
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('PIZZA25'));
+
+// // Function Overloads
+
+// virtual declerations
+function reverse(str: string): string;
+function reverse<T>(arr: T[]): T[];
+
+// implements
+function reverse<T>(stringOrArray: string | T[]): string | T[] {
+  if (typeof stringOrArray === 'string') {
+    return stringOrArray
+      .split('')
+      .reverse()
+      .join('')
+  }
+  return stringOrArray.slice().reverse();
+}
+
+const rev1 = reverse('Pepperoni');
+const rev2 = reverse(['bacon', 'pepperoni', 'chili', 'mushrooms']);
+
+console.log(rev1, rev2)
